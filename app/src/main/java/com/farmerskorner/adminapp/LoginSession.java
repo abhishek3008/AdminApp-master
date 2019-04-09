@@ -1,7 +1,6 @@
 package com.farmerskorner.adminapp;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -16,33 +15,24 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
-public class people extends AsyncTask<String,Void,String> {
+public class LoginSession extends AsyncTask<String,Void,String> {
     private Context context ;
-    public people(Context context){
+    public LoginSession (Context context){
         this.context = context;
     }
     @Override
     protected String doInBackground(String... strings) {
-        String id = (String)strings[0];
-        String person= (String)strings[1];
-        try{
-            String link="http://avrutti.com/election/updatePeople.php";
-            String data  = URLEncoder.encode("id", "UTF-8") + "=" +
-                    URLEncoder.encode(id, "UTF-8");
-            data += "&" + URLEncoder.encode("person", "UTF-8") + "=" +
-                    URLEncoder.encode(person, "UTF-8");
+        String link = "http://avrutti.com/election/file.php";
+        try {
             URL url = new URL(link);
             URLConnection conn = url.openConnection();
             conn.setDoOutput(true);
-            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-            wr.write( data );
-            wr.flush();
             BufferedReader reader = new BufferedReader(new
-                    InputStreamReader(conn.getInputStream()));
+            InputStreamReader(conn.getInputStream()));
             StringBuilder sb = new StringBuilder();
             String line = null;
             // Read Server Response
-            while((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 sb.append(line);
                 break;
             }
@@ -61,5 +51,6 @@ public class people extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result){
         Log.d("Result Activity",result);
+        Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
     }
 }
