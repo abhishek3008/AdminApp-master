@@ -1,5 +1,8 @@
 package com.farmerskorner.adminapp;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class PollingStation extends AppCompatActivity {
+    private static final String MyPREFERENCES = "MyPref";
+    public static final String Name = "nameKey";
+    SharedPreferences sharedpreferences;
     public static String boothid;
     public String staticName;
     TextView boothName1;
@@ -20,7 +26,7 @@ public class PollingStation extends AppCompatActivity {
         setContentView(R.layout.activity_polling_station);
         boothName1=findViewById(R.id.boothName);
         staticName = boothName.name;
-//        Toast.makeText(this, "Name"+ staticName, Toast.LENGTH_SHORT).show();
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         boothName1.setText(staticName);
         number=findViewById(R.id.number);
         submit=findViewById(R.id.submit);
@@ -31,6 +37,13 @@ public class PollingStation extends AppCompatActivity {
                 p.execute(boothid,number.getText().toString());
             }
         });
+    }
 
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(Intent.ACTION_MAIN);
+        i.addCategory(Intent.CATEGORY_HOME);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
     }
 }

@@ -58,10 +58,9 @@
                     android:textAlignment="center"
                     android:textColor="#cb5235"
                     />
-
                 <RatingBar
                     android:id="@+id/ratingBar"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="20dp"
@@ -71,7 +70,8 @@
                     android:transformPivotX="0dp"
                     android:transformPivotY="0dp"
                     android:isIndicator="true"
-                    android:max="4"
+                    android:numStars="5"
+                    android:stepSize="0.5"
                     android:progressTint="#cb5235"
                     />
 
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:textSize="18dp"
             android:textColor="#000"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="12dp"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="10dp"
             />

@@ -2,6 +2,7 @@ package com.farmerskorner.adminapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
+import static com.farmerskorner.adminapp.PollingStation.Name;
 import static com.farmerskorner.adminapp.PollingStation.boothid;
 
 public class Login extends AsyncTask<String,Void,String> {
@@ -64,7 +66,6 @@ public class Login extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result){
         Log.d("Result Activity",result);
-        Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
         if (result.equals("-1")){
             Intent i1=new Intent(context,SuggestionData.class);
             context.startActivity(i1);
