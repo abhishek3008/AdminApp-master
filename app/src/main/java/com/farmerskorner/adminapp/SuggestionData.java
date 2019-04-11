@@ -28,6 +28,7 @@ public class SuggestionData extends AppCompatActivity {
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
+
         fetch();
     }
 
